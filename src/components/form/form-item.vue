@@ -60,6 +60,7 @@
             },
             // 只支持 blur 和 change，所以过滤出符合要求的 rule 规则
             getFilteredRule (trigger) {
+                // 如果传递为空字符串，返回全部rule数数组
                 const rules = this.getRules();
                 return rules.filter(rule => !rule.trigger || rule.trigger.indexOf(trigger) !== -1);
             },
@@ -110,6 +111,10 @@
         },
         // 组件渲染时，将实例缓存在 Form 中
         mounted () {
+            // 如果传递为空字符串，返回全部rule数数组
+            // const res = this.getFilteredRule('')
+            // console.log(res)
+
             // 如果没有传入 prop，则无需校验，也就无需缓存
             if (this.prop) {
                 this.dispatch('iForm', 'on-form-item-add', this);
